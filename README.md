@@ -5,7 +5,7 @@ Welcome to the XING Coding Challenge! This challenge will give us an idea about 
 
 ## Prerequisites
 
-* Feel free to use Java or Kotlin for this challenge.
+* Please use Kotlin for this challenge.
 * Do not focus too much on the design of the UI.
 * The usage of third party libraries is explicitly allowed.
 * Provide a comprehensive git history.
