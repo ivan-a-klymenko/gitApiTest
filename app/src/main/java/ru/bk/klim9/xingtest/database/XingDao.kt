@@ -1,4 +1,4 @@
-package ru.bk.klim9.movies.database
+package ru.bk.klim9.xingtest.database
 
 import androidx.room.Dao
 

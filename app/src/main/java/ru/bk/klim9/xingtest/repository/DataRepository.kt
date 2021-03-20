@@ -1,7 +1,7 @@
 package ru.bk.klim9.xingtest.repository
 
 import ru.bk.klim9.movies.api.XingService
-import ru.bk.klim9.movies.database.XingDao
+import ru.bk.klim9.xingtest.database.XingDao
 
 private const val TAG = "DataRepository"
 

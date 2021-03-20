@@ -1,16 +1,20 @@
 package ru.bk.klim9.xingtest.requests.repos
 
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "repo_items")
 data class RepoResponseItem(
+    @PrimaryKey
     val id: Int,
     @SerializedName("node_id")
     val nodeId: String,
     val name: String,
     @SerializedName("full_name")
     val fullName: String,
-    val `private`: Boolean,
+//    val `private`: Boolean,
     val owner: Owner,
     @SerializedName("html_url")
     val htmlUrl: String,
