@@ -19,31 +19,37 @@
 
     <TextView
         android:id="@+id/repoItemLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        tools:text="TextView"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/repoItemImage"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="TextView" />
 
     <TextView
         android:id="@+id/repoItemName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        tools:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/repoItemLogin"
-        app:layout_constraintStart_toStartOf="@+id/repoItemLogin" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/repoItemLogin"
+        tools:text="TextView" />
 
     <TextView
         android:id="@+id/repoItemDescription"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        tools:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/repoItemLogin"
-        app:layout_constraintTop_toBottomOf="@+id/repoItemLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/repoItemLogin"
+        tools:text="TextView" />
 </ru.bk.klim9.xingtest.ui.repos.ReposItemView>
