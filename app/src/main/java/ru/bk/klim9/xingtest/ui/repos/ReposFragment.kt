@@ -32,11 +32,33 @@ class ReposFragment : Fragment() {
         return inflater.inflate(R.layout.repos_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        textView.setOnClickListener {
-            viewModel.start()
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initUi()
+        initObservers()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+//        viewModel.observeRepos()
+        viewModel.getRemoteData()
+    }
+
+    private fun initObservers() {
+        viewModel.actionLd.observe(viewLifecycleOwner, {
+            when (it) {
+                is ReposViewModel.Action.ShowProgress -> reposProgress.visibility = View.VISIBLE
+                else -> reposProgress.visibility = View.GONE
+            }
+        })
+        viewModel.reposLd.observe(viewLifecycleOwner, {
+
+        })
+    }
+
+    private fun initUi() {
 
     }
 

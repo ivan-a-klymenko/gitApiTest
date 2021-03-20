@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.bk.klim9.xingtest">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".ui.common.XingApp"
         android:allowBackup="true"

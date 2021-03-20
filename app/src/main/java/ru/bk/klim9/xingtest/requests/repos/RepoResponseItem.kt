@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "repo_items")
 data class RepoResponseItem(
     @PrimaryKey
-    val id: Int,
+    var id: Int,
     @SerializedName("node_id")
     val nodeId: String,
     val name: String,

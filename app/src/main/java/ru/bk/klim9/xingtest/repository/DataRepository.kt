@@ -1,11 +1,9 @@
 package ru.bk.klim9.xingtest.repository
 
-import io.reactivex.Flowable
 import io.reactivex.Single
 import ru.bk.klim9.xingtest.api.RemoteDataService
 import ru.bk.klim9.xingtest.database.DbDao
 import ru.bk.klim9.xingtest.requests.repos.RepoResponse
-import ru.bk.klim9.xingtest.requests.repos.ReposItem
 
 private const val TAG = "DataRepository"
 
@@ -13,7 +11,7 @@ const val OWNER = "xing"
 
 class DataRepository(private val service: RemoteDataService, private val dbDao: DbDao) {
 
-    fun observeRepos(): Flowable<List<ReposItem>> = dbDao.flowRepos()
+//    fun observeRepos(): Flowable<List<ReposItem>> = dbDao.flowRepos()
 
     fun getRemoteData(): Single<RepoResponse> = service.getRemoteData(OWNER)
 
