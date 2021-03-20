@@ -18,7 +18,7 @@ class DataRepository(private val service: RemoteDataService, private val dbDao: 
             val repoItems = arrayListOf<ReposItem>()
             it.forEach{ repoResponseItem ->
                 val owner = repoResponseItem.owner
-                repoItems.add(ReposItem(repoResponseItem.name, owner.login, owner.avatarUrl, repoResponseItem.description))
+                repoItems.add(ReposItem(repoResponseItem.name, owner.login, owner.avatarUrl, repoResponseItem.description, repoResponseItem.fork))
             }
             return@flatMap Flowable.just(repoItems)
         }

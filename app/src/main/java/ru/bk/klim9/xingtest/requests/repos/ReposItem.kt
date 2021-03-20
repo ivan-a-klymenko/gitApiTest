@@ -7,5 +7,6 @@ data class ReposItem(
     val name: String,
     val ownerLogin: String,
     val ownerLogo: String,
-    val description: String
+    val description: String,
+    val isForked: Boolean
 )
