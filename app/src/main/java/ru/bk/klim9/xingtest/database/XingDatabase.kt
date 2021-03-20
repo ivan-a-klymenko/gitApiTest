@@ -11,5 +11,5 @@ import ru.bk.klim9.xingtest.requests.repos.RepoResponseItem
 @TypeConverters(TypeConverter::class)
 @Database(entities = [RepoResponseItem::class], version = 1, exportSchema = false)
 abstract class XingDatabase : RoomDatabase() {
-    abstract fun xingDao(): XingDao
+    abstract fun xingDao(): DbDao
 }

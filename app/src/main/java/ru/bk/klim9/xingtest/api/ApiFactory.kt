@@ -5,7 +5,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.bk.klim9.movies.api.XingService
 import ru.bk.klim9.xingtest.BuildConfig
 
 object ApiFactory {
@@ -14,18 +13,18 @@ object ApiFactory {
         buildClient()
     }
 
-    val moviesService: XingService by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
+    val MOVIES_SERVICE: RemoteDataService by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
         createService()
     }
 
-    private fun createService(): XingService {
+    private fun createService(): RemoteDataService {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.API_ENDPOINT)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
-            .create(XingService::class.java)
+            .create(RemoteDataService::class.java)
     }
 
 

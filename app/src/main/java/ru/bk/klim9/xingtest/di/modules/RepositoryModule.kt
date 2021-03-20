@@ -2,10 +2,10 @@ package ru.bk.klim9.xingtest.di.modules
 
 import dagger.Module
 import dagger.Provides
-import ru.bk.klim9.movies.api.XingService
 import ru.bk.klim9.xingtest.api.ApiFactory
+import ru.bk.klim9.xingtest.api.RemoteDataService
 import ru.bk.klim9.xingtest.database.DatabaseHolder
-import ru.bk.klim9.xingtest.database.XingDao
+import ru.bk.klim9.xingtest.database.DbDao
 import ru.bk.klim9.xingtest.repository.DataRepository
 import javax.inject.Singleton
 
@@ -15,18 +15,18 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideSiteSpecsRepository(api: XingService, xingDao: XingDao) =
-        DataRepository(api, xingDao)
+    fun provideSiteSpecsRepository(api: RemoteDataService, dbDao: DbDao) =
+        DataRepository(api, dbDao)
 
     @Singleton
     @Provides
-    fun provideMoviesService() : XingService {
-        return ApiFactory.moviesService
+    fun provideMoviesService() : RemoteDataService {
+        return ApiFactory.MOVIES_SERVICE
     }
 
     @Singleton
     @Provides
-    fun provideMoviesDao(): XingDao {
+    fun provideMoviesDao(): DbDao {
         return DatabaseHolder.database().xingDao()
     }
 }
