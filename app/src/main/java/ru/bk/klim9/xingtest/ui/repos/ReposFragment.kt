@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.repos_fragment.*
 import ru.bk.klim9.xingtest.R
 import javax.inject.Inject
 
-class ReposFragment : Fragment() {
+
+class ReposFragment : Fragment(), ReposAdapter.Action {
 
     companion object {
         fun newInstance() = ReposFragment()
@@ -18,6 +21,7 @@ class ReposFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: ReposViewModel
+    private val reposAdapter = ReposAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,11 +58,27 @@ class ReposFragment : Fragment() {
             }
         })
         viewModel.reposLd.observe(viewLifecycleOwner, {
+            if (it is ReposViewModel.Action.Repos) {
+                reposAdapter.setData(it.reposList)
+            }
 
         })
     }
 
     private fun initUi() {
+        if (reposRv.adapter == null) {
+            reposRv.adapter = reposAdapter
+        }
+        reposRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        val dividerItemDecoration = DividerItemDecoration(
+            reposRv.context,
+            (reposRv.layoutManager as LinearLayoutManager).orientation
+        )
+        reposRv.addItemDecoration(dividerItemDecoration)
+
+    }
+
+    override fun onReposItemLongClick() {
 
     }
 

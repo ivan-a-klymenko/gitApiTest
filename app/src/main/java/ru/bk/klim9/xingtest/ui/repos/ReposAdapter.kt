@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_repos.view.*
@@ -15,7 +16,7 @@ import ru.bk.klim9.xingtest.requests.repos.ReposItem
 /**
  * @author ivan.a.klymenko@gmail.com on 3/20/21
  */
-class ReposAdapter internal constructor(private val action: ReposAdapterAction) : RecyclerView.Adapter<ReposAdapter.Holder>() {
+class ReposAdapter internal constructor(private val action: Action) : RecyclerView.Adapter<ReposAdapter.Holder>() {
 
     private var items = arrayListOf<ReposItem>()
 
@@ -34,11 +35,12 @@ class ReposAdapter internal constructor(private val action: ReposAdapterAction) 
 
     fun setData(newItems: List<ReposItem>) {
         items = newItems as ArrayList<ReposItem>
+        notifyDataSetChanged()
     }
 
     inner class Holder(val view: View) : RecyclerView.ViewHolder(view)
 
-    interface ReposAdapterAction {
+    interface Action {
         fun onReposItemLongClick()
     }
 
@@ -52,6 +54,8 @@ class ReposItemView @JvmOverloads constructor(
          repoItemName.text = item.name
          repoItemLogin.text = item.ownerLogin
          repoItemDescription.text = item.description
+         val backgroundColorId = if (item.isForked) R.color.light_green else R.color.white
+         repoItemRoot.setBackgroundColor(ResourcesCompat.getColor(resources, backgroundColorId, null))
 
          Glide.with(repoItemImage.context)
              .load(item.ownerLogo)
