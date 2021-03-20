@@ -42,7 +42,7 @@ class ReposFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-//        viewModel.observeRepos()
+        viewModel.observeRepos()
         viewModel.getRemoteData()
     }
 

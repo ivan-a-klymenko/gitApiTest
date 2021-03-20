@@ -27,6 +27,6 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideMoviesDao(): DbDao {
-        return DatabaseHolder.database().xingDao()
+        return DatabaseHolder.database().dbDao()
     }
 }

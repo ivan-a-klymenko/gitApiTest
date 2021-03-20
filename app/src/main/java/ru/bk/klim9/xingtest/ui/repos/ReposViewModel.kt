@@ -30,15 +30,15 @@ class ReposViewModel @Inject constructor() : BaseViewModel() {
     }
 
     fun observeRepos() {
-//        cd.add(repository.observeRepos()
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe({
-//                reposLd.value = Action.Repos(it)
-//                Log.d("$TAG TTT17", "observeRepos(): $it")
-//            }, {
-//                Log.d(TAG, "observeRepos error: ${it.message}", it)
-//            }))
+        cd.add(repository.observeRepos()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                reposLd.value = Action.Repos(it)
+                Log.d("$TAG TTT17", "observeRepos(): $it")
+            }, {
+                Log.d(TAG, "observeRepos error: ${it.message}", it)
+            }))
     }
 
     sealed class Action {

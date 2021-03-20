@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken
 import ru.bk.klim9.xingtest.requests.repos.License
 import ru.bk.klim9.xingtest.requests.repos.Owner
 import ru.bk.klim9.xingtest.requests.repos.Permissions
+import java.util.*
 
 /**
  * @author ivan.a.klymenko@gmail.com on 3/20/21
@@ -82,5 +83,23 @@ class TypeConverter {
         }
         val type = object : TypeToken<Any>() {}.type
         return Gson().fromJson<Any>(json, type)
+    }
+
+    @TypeConverter
+    fun fromDate(value: Date?): String {
+        if (value == null) {
+            return ""
+        }
+        val type = object : TypeToken<Date>() {}.type
+        return Gson().toJson(value, type)
+    }
+
+    @TypeConverter
+    fun toDate(json: String?): Date? {
+        if (json == null || "" == json) {
+            return null
+        }
+        val type = object : TypeToken<Date>() {}.type
+        return Gson().fromJson<Date>(json, type)
     }
 }

@@ -4,6 +4,7 @@ package ru.bk.klim9.xingtest.requests.repos
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 @Entity(tableName = "repo_items")
 data class RepoResponseItem(
@@ -94,11 +95,11 @@ data class RepoResponseItem(
     @SerializedName("deployments_url")
     val deploymentsUrl: String,
     @SerializedName("created_at")
-    val createdAt: String,
+    val createdAt: Date,
     @SerializedName("updated_at")
-    val updatedAt: String,
+    val updatedAt: Date,
     @SerializedName("pushed_at")
-    val pushedAt: String,
+    val pushedAt: Date,
     @SerializedName("git_url")
     val gitUrl: String,
     @SerializedName("ssh_url")
