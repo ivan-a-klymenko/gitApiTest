@@ -14,6 +14,7 @@ class ReposViewModel @Inject constructor() : BaseViewModel() {
 
     val actionLd = MutableLiveData<Action>()
     val reposLd = MutableLiveData<Action>()
+    val errorLd = MutableLiveData<Action>()
 
     fun getRemoteData() {
         cd.add(repository.getRemoteData()
@@ -25,6 +26,7 @@ class ReposViewModel @Inject constructor() : BaseViewModel() {
             }, {
                 Log.d(TAG, "observeRepos error: ${it.message}", it)
                 actionLd.value = Action.HideProgress
+                errorLd.value = it.message?.let { it1 -> Action.Error(it1) }
             }))
     }
 
@@ -43,5 +45,6 @@ class ReposViewModel @Inject constructor() : BaseViewModel() {
         object ShowProgress : Action()
         object HideProgress : Action()
         class Repos(val reposList: List<ReposItem>) : Action()
+        class Error(val message: String) : Action()
     }
 }
