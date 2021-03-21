@@ -15,7 +15,6 @@ data class RepoResponseItem(
     val name: String,
     @SerializedName("full_name")
     val fullName: String,
-//    val `private`: Boolean,
     val owner: Owner,
     @SerializedName("html_url")
     val htmlUrl: String,

@@ -7,8 +7,6 @@ import ru.bk.klim9.xingtest.database.DbDao
 import ru.bk.klim9.xingtest.requests.repos.RepoResponse
 import ru.bk.klim9.xingtest.requests.repos.ReposItem
 
-private const val TAG = "DataRepository"
-
 const val OWNER = "xing"
 
 class DataRepository(private val service: RemoteDataService, private val dbDao: DbDao) {

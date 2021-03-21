@@ -78,8 +78,8 @@ class ReposFragment : Fragment(), ReposAdapter.Action {
 
     }
 
-    override fun onReposItemLongClick() {
-
+    override fun onReposItemLongClick(): Boolean {
+        return true
     }
 
 }

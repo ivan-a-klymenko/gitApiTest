@@ -29,6 +29,9 @@ class ReposAdapter internal constructor(private val action: Action) : RecyclerVi
         val item = items[position]
         val itemView = holder.itemView as ReposItemView
         itemView.bind(item)
+        itemView.setOnLongClickListener {
+            action.onReposItemLongClick()
+        }
     }
 
     override fun getItemCount(): Int = items.size
@@ -38,10 +41,10 @@ class ReposAdapter internal constructor(private val action: Action) : RecyclerVi
         notifyDataSetChanged()
     }
 
-    inner class Holder(val view: View) : RecyclerView.ViewHolder(view)
+    inner class Holder(view: View) : RecyclerView.ViewHolder(view)
 
     interface Action {
-        fun onReposItemLongClick()
+        fun onReposItemLongClick(): Boolean
     }
 
 }

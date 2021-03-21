@@ -11,19 +11,12 @@ import ru.bk.klim9.xingtest.di.DaggerApplicationComponent;
  */
 public class XingApp extends BaseApplication {
 
-    private static XingApp instance;
-
     private ApplicationComponent applicationComponent;
 
     @Override
     public void onCreate() {
         applicationComponent = DaggerApplicationComponent.builder().application(this).build();
-        instance = this;
         super.onCreate();
-    }
-
-    public static XingApp getInstance() {
-        return instance;
     }
 
     @Override
