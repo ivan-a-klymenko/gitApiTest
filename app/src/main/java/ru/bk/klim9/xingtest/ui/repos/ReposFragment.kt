@@ -26,7 +26,6 @@ class ReposFragment : Fragment(), ReposAdapter.Action {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidSupportInjection.inject(this)
-
     }
 
     override fun onCreateView(
@@ -61,7 +60,6 @@ class ReposFragment : Fragment(), ReposAdapter.Action {
             if (it is ReposViewModel.Action.Repos) {
                 reposAdapter.setData(it.reposList)
             }
-
         })
     }
 
@@ -75,7 +73,6 @@ class ReposFragment : Fragment(), ReposAdapter.Action {
             (reposRv.layoutManager as LinearLayoutManager).orientation
         )
         reposRv.addItemDecoration(dividerItemDecoration)
-
     }
 
     override fun onReposItemLongClick(): Boolean {
