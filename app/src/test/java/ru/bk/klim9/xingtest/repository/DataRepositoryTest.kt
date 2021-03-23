@@ -21,7 +21,7 @@ class DataRepositoryTest {
     @Before
     fun createRepository() {
         testSubscriber = TestSubscriber<List<RepoResponseItem>>()
-        fakeRemoteDataService = FakeRemoteDataService(SourceProducer.getFullRepoResponse())
+        fakeRemoteDataService = FakeRemoteDataService()
         fakeDbDao = FakeDbDao(SourceProducer.getFullRepoResponse())
     }
 

@@ -3,7 +3,6 @@ package ru.bk.klim9.xingtest.repository
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import ru.bk.klim9.xingtest.requests.repos.RepoResponse
-import ru.bk.klim9.xingtest.requests.repos.RepoResponseItem
 import ru.bk.klim9.xingtest.requests.repos.ReposItem
 
 /**
@@ -21,12 +20,10 @@ object SourceProducer {
 
     fun getFullRepoResponse(): RepoResponse {
         val type = object : TypeToken<RepoResponse>() {}.type
-        return Gson().fromJson<RepoResponse>(repoResponseJson, type)
+        return Gson().fromJson(repoResponseJson, type)
     }
 
-    fun getEmptyRepoResponse(): RepoResponse = arrayListOf<RepoResponseItem>() as RepoResponse
-
-    const val repoResponseJson = "[\n" +
+    private const val repoResponseJson = "[\n" +
             "  {\n" +
             "    \"id\": 234107,\n" +
             "    \"node_id\": \"MDEwOlJlcG9zaXRvcnkyMzQxMDc=\",\n" +

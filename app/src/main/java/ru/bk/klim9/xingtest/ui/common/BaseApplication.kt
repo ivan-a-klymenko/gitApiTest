@@ -1,25 +1,20 @@
-package ru.bk.klim9.xingtest.ui.common;
+package ru.bk.klim9.xingtest.ui.common
 
-
-import dagger.android.AndroidInjector;
-import dagger.android.support.DaggerApplication;
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 
 /**
  * @author Ivan
  */
-abstract public class BaseApplication extends DaggerApplication {
-
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        initDataBase();
+abstract class BaseApplication : DaggerApplication() {
+    override fun onCreate() {
+        super.onCreate()
+        initDataBase()
     }
 
-    @Override
-    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return null;
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication>? {
+        return null
     }
 
-    protected abstract void initDataBase();
+    protected abstract fun initDataBase()
 }
