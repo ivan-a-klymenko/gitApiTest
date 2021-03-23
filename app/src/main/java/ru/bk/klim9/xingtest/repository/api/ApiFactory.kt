@@ -1,4 +1,4 @@
-package ru.bk.klim9.xingtest.api
+package ru.bk.klim9.xingtest.repository.api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -13,7 +13,7 @@ object ApiFactory {
         buildClient()
     }
 
-    val MOVIES_SERVICE: RemoteDataService by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
+    val REMOTE_SERVICE: RemoteDataService by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
         createService()
     }
 

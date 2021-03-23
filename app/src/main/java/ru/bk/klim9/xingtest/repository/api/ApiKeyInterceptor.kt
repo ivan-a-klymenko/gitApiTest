@@ -1,4 +1,4 @@
-package ru.bk.klim9.xingtest.api
+package ru.bk.klim9.xingtest.repository.api
 
 import okhttp3.Interceptor
 import okhttp3.Response

@@ -1,4 +1,4 @@
-package ru.bk.klim9.xingtest.api
+package ru.bk.klim9.xingtest.repository.api
 
 import io.reactivex.Single
 import retrofit2.http.GET

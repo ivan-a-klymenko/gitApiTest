@@ -2,8 +2,8 @@ package ru.bk.klim9.xingtest.repository
 
 import io.reactivex.Flowable
 import io.reactivex.Single
-import ru.bk.klim9.xingtest.api.RemoteDataService
-import ru.bk.klim9.xingtest.database.DbDao
+import ru.bk.klim9.xingtest.repository.api.RemoteDataService
+import ru.bk.klim9.xingtest.repository.database.DbDao
 import ru.bk.klim9.xingtest.requests.repos.RepoResponse
 import ru.bk.klim9.xingtest.requests.repos.ReposItem
 

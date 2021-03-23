@@ -1,6 +1,7 @@
 package ru.bk.klim9.xingtest.ui.repos
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -12,22 +13,33 @@ private const val TAG = "ReposViewModel"
 
 class ReposViewModel @Inject constructor() : BaseViewModel() {
 
-    val actionLd = MutableLiveData<Action>()
-    val reposLd = MutableLiveData<Action>()
-    val errorLd = MutableLiveData<Action>()
+    private val _actionLd = MutableLiveData<Action>()
+    val actionLd: LiveData<Action> = _actionLd
+    private val _reposLd = MutableLiveData<Action>()
+    val reposLd: LiveData<Action> = _reposLd
+    private val _errorLd = MutableLiveData<Action>()
+    val errorLd: LiveData<Action> = _errorLd
 
     fun getRemoteData() {
         cd.add(repository.getRemoteData()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe{actionLd.value = Action.ShowProgress}
+            .doOnSubscribe{_actionLd.value = Action.ShowProgress}
             .subscribe({
-                actionLd.value = Action.HideProgress
+                setActionValue()
             }, {
                 Log.d(TAG, "observeRepos error: ${it.message}", it)
-                actionLd.value = Action.HideProgress
-                errorLd.value = it.message?.let { it1 -> Action.Error(it1) }
+                setActionValue()
+                setErrorValue(it)
             }))
+    }
+
+    private fun setErrorValue(it: Throwable) {
+        _errorLd.value = it.message?.let { it1 -> Action.Error(it1) }
+    }
+
+    private fun setActionValue() {
+        _actionLd.value = Action.HideProgress
     }
 
     fun observeRepos() {
@@ -35,10 +47,14 @@ class ReposViewModel @Inject constructor() : BaseViewModel() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                reposLd.value = Action.Repos(it)
+                setReposValue(it)
             }, {
                 Log.d(TAG, "observeRepos error: ${it.message}", it)
             }))
+    }
+
+    fun setReposValue(it: List<ReposItem>) {
+        _reposLd.value = Action.Repos(it)
     }
 
     sealed class Action {

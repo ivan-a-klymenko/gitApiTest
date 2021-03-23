@@ -2,9 +2,9 @@ package ru.bk.klim9.xingtest.ui.common;
 
 import dagger.android.AndroidInjector;
 import dagger.android.support.DaggerApplication;
-import ru.bk.klim9.xingtest.database.DatabaseHolder;
 import ru.bk.klim9.xingtest.di.ApplicationComponent;
 import ru.bk.klim9.xingtest.di.DaggerApplicationComponent;
+import ru.bk.klim9.xingtest.repository.database.DatabaseHolder;
 
 /**
  * @author ivan.a.klymenko@gmail.com on 2019-12-08

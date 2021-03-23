@@ -1,4 +1,4 @@
-package ru.bk.klim9.xingtest.database
+package ru.bk.klim9.xingtest.repository.database
 
 import androidx.room.Dao
 import androidx.room.Insert
