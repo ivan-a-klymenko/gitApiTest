@@ -10,11 +10,7 @@ import ru.bk.klim9.xingtest.requests.repos.ReposItem
  */
 class FakeDataRepository : IDataRepository {
 
-    override fun observeRepos(): Flowable<List<ReposItem>> {
-        TODO("Not yet implemented")
-    }
+    override fun observeRepos(): Flowable<List<ReposItem>> = Flowable.just(SourceProducer.createFulReposItemlList())
 
-    override fun getRemoteData(): Single<RepoResponse> {
-        TODO("Not yet implemented")
-    }
+    override fun getRemoteData(): Single<RepoResponse> = Single.just(SourceProducer.getFullRepoResponse())
 }

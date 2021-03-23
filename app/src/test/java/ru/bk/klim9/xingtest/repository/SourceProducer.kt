@@ -4,11 +4,20 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import ru.bk.klim9.xingtest.requests.repos.RepoResponse
 import ru.bk.klim9.xingtest.requests.repos.RepoResponseItem
+import ru.bk.klim9.xingtest.requests.repos.ReposItem
 
 /**
  * @author ivan.a.klymenko@gmail.com on 3/23/21
  */
 object SourceProducer {
+
+    fun createFulReposItemlList(): List<ReposItem> = arrayListOf<ReposItem>().apply {
+        add(ReposItem("TestName1", "OwnerLogin1", "ownerLogo1", "description1", true))
+        add(ReposItem("TestName2", "OwnerLogin2", "ownerLogo2", "description2", true))
+        add(ReposItem("TestName3", "OwnerLogin3", "ownerLogo3", "description3", true))
+        add(ReposItem("TestName4", "OwnerLogin4", "ownerLogo4", "description4", true))
+
+    }
 
     fun getFullRepoResponse(): RepoResponse {
         val type = object : TypeToken<RepoResponse>() {}.type

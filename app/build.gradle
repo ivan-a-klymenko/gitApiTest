@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 29
     buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "ru.bk.klim9.xingtest"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
@@ -99,6 +99,7 @@ dependencies {
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
     testImplementation "org.hamcrest:hamcrest-all:$hamcrestVersion"
     testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
+    testImplementation "com.google.truth:truth:0.42"
 
     androidTestImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"

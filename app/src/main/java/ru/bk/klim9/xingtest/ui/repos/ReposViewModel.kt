@@ -25,11 +25,11 @@ class ReposViewModel @Inject constructor() : BaseViewModel() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe{_actionLd.value = Action.ShowProgress}
+            .doFinally { setActionValue() }
             .subscribe({
-                setActionValue()
+                Log.d(TAG, "getRemoteData success: $it")
             }, {
-                Log.d(TAG, "observeRepos error: ${it.message}", it)
-                setActionValue()
+                Log.d(TAG, "getRemoteData error: ${it.message}", it)
                 setErrorValue(it)
             }))
     }
