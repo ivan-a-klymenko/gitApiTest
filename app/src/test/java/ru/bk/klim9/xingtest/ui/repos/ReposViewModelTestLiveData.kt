@@ -16,7 +16,7 @@ import ru.bk.klim9.xingtest.requests.repos.ReposItem
  * @author ivan.a.klymenko@gmail.com on 3/22/21
  */
 @RunWith(AndroidJUnit4::class)
-class ReposViewModelTest {
+class ReposViewModelTestLiveData {
 
     private lateinit var reposViewModel: ReposViewModel
 

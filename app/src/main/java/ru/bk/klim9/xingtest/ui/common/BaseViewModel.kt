@@ -2,7 +2,7 @@ package ru.bk.klim9.xingtest.ui.common
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
-import ru.bk.klim9.xingtest.repository.DataRepository
+import ru.bk.klim9.xingtest.repository.IDataRepository
 import javax.inject.Inject
 
 /**
@@ -11,7 +11,7 @@ import javax.inject.Inject
 open class BaseViewModel @Inject constructor() : ViewModel() {
 
     @Inject
-    lateinit var repository: DataRepository
+    lateinit var repository: IDataRepository
     protected open val cd = CompositeDisposable()
 
     override fun onCleared() {

@@ -9,9 +9,10 @@ import ru.bk.klim9.xingtest.requests.repos.ReposItem
 
 const val OWNER = "xing"
 
-class DataRepository(private val service: RemoteDataService, private val dbDao: DbDao) {
+class DataRepository(private val service: RemoteDataService, private val dbDao: DbDao) :
+    IDataRepository {
 
-    fun observeRepos(): Flowable<List<ReposItem>> = dbDao.flowRepos()
+    override fun observeRepos(): Flowable<List<ReposItem>> = dbDao.flowRepos()
         .flatMap {
             val repoItems = arrayListOf<ReposItem>()
             it.forEach{ repoResponseItem ->
@@ -21,7 +22,7 @@ class DataRepository(private val service: RemoteDataService, private val dbDao: 
             return@flatMap Flowable.just(repoItems)
         }
 
-    fun getRemoteData(): Single<RepoResponse> = service.getRemoteData(OWNER)
+    override fun getRemoteData(): Single<RepoResponse> = service.getRemoteData(OWNER)
         .flatMap {
             dbDao.saveAll(it)
             return@flatMap Single.just(it)

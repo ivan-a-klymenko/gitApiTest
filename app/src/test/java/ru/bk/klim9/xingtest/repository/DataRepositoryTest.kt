@@ -14,7 +14,6 @@ import ru.bk.klim9.xingtest.requests.repos.RepoResponseItem
  */
 class DataRepositoryTest {
 
-    private lateinit var repository: DataRepository
     private lateinit var fakeRemoteDataService: FakeRemoteDataService
     private lateinit var fakeDbDao: FakeDbDao
     private lateinit var testSubscriber: TestSubscriber<List<RepoResponseItem>>
@@ -24,7 +23,6 @@ class DataRepositoryTest {
         testSubscriber = TestSubscriber<List<RepoResponseItem>>()
         fakeRemoteDataService = FakeRemoteDataService(SourceProducer.getFullRepoResponse())
         fakeDbDao = FakeDbDao(SourceProducer.getFullRepoResponse())
-        repository = DataRepository(fakeRemoteDataService, fakeDbDao)
     }
 
     @Test

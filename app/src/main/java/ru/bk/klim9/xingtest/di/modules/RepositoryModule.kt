@@ -3,6 +3,7 @@ package ru.bk.klim9.xingtest.di.modules
 import dagger.Module
 import dagger.Provides
 import ru.bk.klim9.xingtest.repository.DataRepository
+import ru.bk.klim9.xingtest.repository.IDataRepository
 import ru.bk.klim9.xingtest.repository.api.ApiFactory
 import ru.bk.klim9.xingtest.repository.api.RemoteDataService
 import ru.bk.klim9.xingtest.repository.database.DatabaseHolder
@@ -15,7 +16,7 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideDataRepository(api: RemoteDataService, dbDao: DbDao) =
+    fun provideDataRepository(api: RemoteDataService, dbDao: DbDao) : IDataRepository =
         DataRepository(api, dbDao)
 
     @Singleton
