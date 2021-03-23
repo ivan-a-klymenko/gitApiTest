@@ -6,13 +6,11 @@ import ru.bk.klim9.xingtest.requests.repos.RepoResponseItem
 /**
  * @author ivan.a.klymenko@gmail.com on 3/23/21
  */
-class FakeDbDao : DbDao {
+class FakeDbDao(private val responseItems: List<RepoResponseItem>) : DbDao {
 
-    override fun flowRepos(): Flowable<List<RepoResponseItem>> {
-        TODO("Not yet implemented")
-    }
+    override fun flowRepos(): Flowable<List<RepoResponseItem>> = Flowable.just(responseItems)
 
     override fun saveAll(movies: List<RepoResponseItem>) {
-        TODO("Not yet implemented")
+
     }
 }
