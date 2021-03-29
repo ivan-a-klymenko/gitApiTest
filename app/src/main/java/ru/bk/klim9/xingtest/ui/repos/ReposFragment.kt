@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.repos_fragment.*
 import ru.bk.klim9.xingtest.R
+import ru.bk.klim9.xingtest.repository.IDataRepository
 import javax.inject.Inject
 
 
@@ -20,6 +21,8 @@ class ReposFragment : Fragment(), ReposAdapter.Action {
         fun newInstance() = ReposFragment()
     }
 
+    @Inject
+    lateinit var repository: IDataRepository
     @Inject
     lateinit var viewModel: ReposViewModel
     private val reposAdapter = ReposAdapter(this)

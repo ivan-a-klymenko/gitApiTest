@@ -3,15 +3,17 @@ package ru.bk.klim9.xingtest.ui.repos
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import ru.bk.klim9.xingtest.repository.IDataRepository
 import ru.bk.klim9.xingtest.requests.repos.ReposItem
-import ru.bk.klim9.xingtest.ui.common.BaseViewModel
 import javax.inject.Inject
 
 private const val TAG = "ReposViewModel"
 
-class ReposViewModel @Inject constructor() : BaseViewModel() {
+class ReposViewModel @Inject constructor(val repository: IDataRepository) : ViewModel() {
 
     private val _actionLd = MutableLiveData<Action>()
     val actionLd: LiveData<Action> = _actionLd
@@ -19,6 +21,12 @@ class ReposViewModel @Inject constructor() : BaseViewModel() {
     val reposLd: LiveData<Action> = _reposLd
     private val _errorLd = MutableLiveData<Action>()
     val errorLd: LiveData<Action> = _errorLd
+    private val cd = CompositeDisposable()
+
+    override fun onCleared() {
+        super.onCleared()
+        cd.clear()
+    }
 
     fun getRemoteData() {
         cd.add(repository.getRemoteData()

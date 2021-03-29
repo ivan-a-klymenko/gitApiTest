@@ -8,10 +8,8 @@ import javax.inject.Inject
 /**
  * @author ivan.a.klymenko@gmail.com on 3/20/21
  */
-open class BaseViewModel @Inject constructor() : ViewModel() {
+open class BaseViewModel @Inject constructor(val repository: IDataRepository) : ViewModel() {
 
-    @Inject
-    lateinit var repository: IDataRepository
     protected open val cd = CompositeDisposable()
 
     override fun onCleared() {
