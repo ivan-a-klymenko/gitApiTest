@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import ru.bk.klim9.xingtest.repository.DataRepository
 import ru.bk.klim9.xingtest.repository.IDataRepository
 import ru.bk.klim9.xingtest.requests.repos.ReposItem
 import javax.inject.Inject
@@ -23,6 +24,14 @@ class ReposViewModel @Inject constructor(val repository: IDataRepository) : View
     val errorLd: LiveData<Action> = _errorLd
     private val cd = CompositeDisposable()
 
+    private val workScheduler by lazy {
+        if (repository is DataRepository) Schedulers.io() else Schedulers.trampoline()
+    }
+
+    private val resultScheduler by lazy {
+        if (repository is DataRepository) AndroidSchedulers.mainThread() else Schedulers.trampoline()
+    }
+
     override fun onCleared() {
         super.onCleared()
         cd.clear()
@@ -30,8 +39,8 @@ class ReposViewModel @Inject constructor(val repository: IDataRepository) : View
 
     fun getRemoteData() {
         cd.add(repository.getRemoteData()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(workScheduler)
+            .observeOn(resultScheduler)
             .doOnSubscribe{_actionLd.value = Action.ShowProgress}
             .doFinally { setActionValue() }
             .subscribe({
@@ -42,7 +51,7 @@ class ReposViewModel @Inject constructor(val repository: IDataRepository) : View
             }))
     }
 
-    private fun setErrorValue(it: Throwable) {
+    fun setErrorValue(it: Throwable) {
         _errorLd.value = it.message?.let { it1 -> Action.Error(it1) }
     }
 
@@ -69,6 +78,6 @@ class ReposViewModel @Inject constructor(val repository: IDataRepository) : View
         object ShowProgress : Action()
         object HideProgress : Action()
         class Repos(val reposList: List<ReposItem>) : Action()
-        class Error(val message: String) : Action()
+        data class Error(val message: String) : Action()
     }
 }
